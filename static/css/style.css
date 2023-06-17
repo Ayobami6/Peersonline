@@ -1,0 +1,11 @@
+/* Base Template styles */
+.footer-content {
+    text-align: center;
+    font-size: 16px;
+    line-height: 4rem;
+}
+
+.auth-btn {
+    display: inline-grid;
+    margin-top: 5%;
+}
