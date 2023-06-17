@@ -12,19 +12,20 @@ class Profile(models.Model):
     """ This class is used to create a profile for a user.
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=50, blank=True)
-    last_name = models.CharField(max_length=50, blank=True)
+    first_name = models.CharField(max_length=250, blank=True)
+    last_name = models.CharField(max_length=250, blank=True)
     bio = models.TextField(max_length=500, blank=True)
     profile_pic = models.ImageField(
         upload_to='profile_pics',
         blank=True, default='profile_pics/default.png')
-    openai_key = models.CharField(max_length=100, blank=True)
+    openai_key = models.CharField(max_length=250, blank=True)
 
     def save(self, *args, **kwargs):
         """ Overwrite the save method to encrypt the openai_key
         """
         f = Fernet(encryption_key)
-        self.openai_key = f.encrypt(self.openai_key.encode()).decode()
+        if self.openai_key:
+            self.openai_key = f.encrypt(self.openai_key.encode()).decode()
         super().save(*args, **kwargs)
 
     def __str__(self):
