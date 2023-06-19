@@ -16,8 +16,8 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=250, blank=True)
     bio = models.TextField(max_length=500, blank=True)
     profile_pic = models.ImageField(
-        upload_to='profile_pics',
-        blank=True, default='profile_pics/default.png')
+        upload_to='profile_img',
+        blank=True, default='profile_img/default.png')
     openai_key = models.CharField(max_length=250, blank=True)
 
     def save(self, *args, **kwargs):
