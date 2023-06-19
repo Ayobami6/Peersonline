@@ -106,7 +106,11 @@ DATABASES = {
         'PASSWORD': os.environ.get('PEERS_PSQL_PWD'),
         'HOST': '100.25.17.109',
         'PORT': '5432',
-    }
+        'TEST': {
+            'NAME': 'peers_test_db',
+            'USER': 'peers_admin',
+        }
+    },
 }
 
 # 'ENGINE': 'django.db.backends.sqlite3',
