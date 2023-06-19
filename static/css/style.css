@@ -44,3 +44,8 @@
 a {
     text-decoration: none;
 }
+
+#quote {
+    margin-left: auto;
+    margin-right: auto;
+}

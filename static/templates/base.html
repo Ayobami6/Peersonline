@@ -72,8 +72,11 @@
                             <i class="bi bi-person-circle"></i> {{ user.username }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">View Profile</a></li>
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> View Profile</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}" style="color: #e01b24;"><i
+                                        class="fa-solid fa-right-from-bracket" style="color: #e01b24;"></i> Logout</a>
+                            </li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>

@@ -1,21 +1,39 @@
-{% extends 'base.html' %} {% load socialaccount %} {% block title %}Login{% endblock %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% load socialaccount %} {% block title %}Login{% endblock %}
+{% block content %}
 
-<div id="sign-box">
-    <h4>WELCOME BACK</h4>
-    <h2 style="size: 50px">😃</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5 col-md-6">
+            <div id="sign-box">
+                <h4 style="font-weight: 900;">WELCOME</h4>
+                <h2 style="size: 50px">😃</h2>
 
-    <h4>Sign In To Peers</h4>
-    <a class="auth-btn" style="font-size: 35px; width: 100%; height: 15%;" href="{% provider_login_url 'github' %}"
-        class="fa-icon">
-        <button class="btn btn-primary btn-xxl">
-            <i class="fa-brands fa-github px-2 py-1"></i> Continue with Github
-        </button>
-    </a>
-    <a class="auth-btn" style="font-size: 35px; width: 100%; height: 15%;" href="{% provider_login_url 'google' %}"
-        class="fa-icon">
-        <button class="btn btn-primary btn-xxl"> <i class="fa-brands fa-google px-2 py-1"></i> Continue with
-            Google</button>
-    </a>
+                <h3 style="font-weight: 900; color:rgb(41, 41, 255); font-size: 35px;">Sign Up / Login </h3>
+                <a class="auth-btn" style="font-size: 35px; width: 100%; height: 15%;"
+                    href="{% provider_login_url 'github' %}" class="fa-icon">
+                    <button class="btn btn-primary btn-xxl">
+                        <i class="fa-brands fa-github px-2 py-1"></i> Continue with Github
+                    </button>
+                </a>
+                <a class="auth-btn" style="font-size: 35px; width: 100%; height: 15%;"
+                    href="{% provider_login_url 'google' %}" class="fa-icon">
+                    <button class="btn btn-primary btn-xxl"> <i class="fa-brands fa-google px-2 py-1"></i> Continue with
+                        Google</button>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+            <blockquote id="sign-box" style="font-weight: 600;">
+                "There is no great art without passion"
+                <br>
+                <div> <cite>Ayobami Alaran
+                        <br>
+                        <small>CEO Peersonline</small>
+                    </cite></div>
+                <img src="{% static 'assets/ayo.jpeg' %}" width="50" height="50" class="rounded-circle" alt="">
+            </blockquote>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
