@@ -28,7 +28,7 @@ jobs:
           pip install -r requirements.txt
       - name: Set environment variables
         run:  |
-          export PEERS_PSQL_PWD=${{ secrets.PEERS_PSQL_PWD }}
+          echo "PEERS_PSQL_PWD=$PEERS_PSQL_PWD" >> $GITHUB_ENV
       - name: Run Tests
         run: |
           pytest
