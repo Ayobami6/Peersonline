@@ -17,13 +17,21 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Profile',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id',
+                 models.BigAutoField(auto_created=True,
+                                     primary_key=True,
+                                     serialize=False, verbose_name='ID')),
                 ('first_name', models.CharField(blank=True, max_length=50)),
                 ('last_name', models.CharField(blank=True, max_length=50)),
                 ('bio', models.TextField(blank=True, max_length=500)),
-                ('profile_pic', models.ImageField(blank=True, default='profile_pics/default.png', upload_to='profile_pics')),
-                ('openai_key', models.CharField(blank=True, max_length=100)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('profile_pic', models.ImageField(blank=True,
+                 default='profile_pics/default.png',
+                 upload_to='profile_pics')),
+                ('openai_key', models.CharField(blank=True,
+                                                max_length=100)),
+                ('user', models.OneToOneField(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
