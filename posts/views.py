@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Posts
 from .forms import PostsForms
 from django.urls import reverse_lazy, reverse
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -53,3 +54,18 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Posts
     template_name = 'posts/post_delete.html'
     success_url = reverse_lazy('home')
+
+
+def LikeView(request, pk):
+    post = Posts.objects.get(id=pk)
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+    post.save()
+    post.refresh_from_db()
+    total_likes = post.total_likes()
+    response_data = {
+        'total_likes': total_likes,
+    }
+    return JsonResponse(response_data)

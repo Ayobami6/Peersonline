@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, UpdateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.list import ListView
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from posts.models import Posts
+from .forms import ProfileEditForm
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -32,3 +34,26 @@ class LoginAndSignUpView(LoginView):
 class UserLogoutView(LogoutView):
     success_url = 'home/login'
     redirect_url = "home/login"
+
+
+class ProfileView(DetailView):
+    model = Profile
+    template_name = 'users/profile.html'
+    context_object_name = 'profile'
+
+    def get_context_data(self, **kwargs):
+        """ This method is used to get the context data """
+        context = super().get_context_data(**kwargs)
+        user_profile = self.request.user.profile
+        context['user_profile'] = user_profile
+        return context
+
+
+class ProfileEditView(UpdateView):
+    model = Profile
+    template_name = 'users/profile_edit.html'
+    form_class = ProfileEditForm
+    success_url = reverse_lazy('home')
+
+# TODO: Add a template to edit the profile
+# TODO: Add a template to show the profile

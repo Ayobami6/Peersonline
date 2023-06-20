@@ -2,25 +2,31 @@
 {% load static %}
 {% block title %}Home{% endblock %}
 {% block style_sheet_and_js %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}" /> {% endblock %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<script src="{% static 'scripts/script.js' %}"></script>
+{% endblock %}
 {% block content %}
-
 <h1>Welcome {{ user }}</h1>
 
 <div class="container-fluid">
     <div class="row g-3">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+        <div class="col-md-auto ms-4">
+            <div class="card" style="width: 15rem;">
+                <img src="{{ user.profile.profile_pic.url }}" width="60" height="60"
+                    class="rounded-circle ms-auto me-auto mt-4" alt="...">
+                <div class="ms-auto me-auto">
+                    <p class="ms-auto me-auto"> {% if user.profile.first_name and user.profile.last_name %}
+                        {{ user.profile.first_name }} {{ user.profile.last_name }}
+                        {% else %}
+                        {{ user.username }}
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>
         <div class="col-6">
             {% for post in posts %}
-            <div class="card" style="width: 30rem;">
+            <div class="card ms-5" style="width: 30rem;">
                 <small><img src="{{ post.author.profile.profile_pic.url }}" width="60" height="60"
                         class="rounded-circle" alt="...">
                 </small>
@@ -37,6 +43,7 @@
                 <div class="card-body">
                     <a href="#" class="card-link">Card link</a>
                     <a href="#" class="card-link">Another link</a>
+                    <!-- <small id="like-count"></small><button id="like-button" data-pk="{{ post.id }}">Like</button> -->
                     <a href="{% url 'post_update' post.pk %}" class="card-link">Edit</a>
                     <a href="{% url 'post_delete' post.pk %}" class="card-link">Delete</a>
                 </div>
@@ -44,8 +51,8 @@
             <br>
             {% endfor %}
         </div>
-        <div class="col">
-            <div class="card" style="width: 15rem;">
+        <div class="col-md-auto">
+            <div class="card" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
