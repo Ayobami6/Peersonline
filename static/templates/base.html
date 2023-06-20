@@ -76,6 +76,9 @@
                             <i class="bi bi-person-circle"></i> {{ user.username }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'profile' user.pk %}"><i
+                                        class="bi bi-person-circle"></i> View Profile</a>
+                            </li>
                             <li><a class="dropdown-item" href="{% url 'profile_edit' user.pk %}"><i
                                         class="bi bi-person-circle"></i> Edit Profile</a>
                             </li>
