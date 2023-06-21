@@ -57,6 +57,8 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 
 
 def LikeView(request, pk):
+    """ This function is used to like a post and unlike a post
+    """
     post = Posts.objects.get(id=pk)
     if post.likes.filter(id=request.user.id).exists():
         post.likes.remove(request.user)
@@ -69,6 +71,3 @@ def LikeView(request, pk):
         'total_likes': total_likes,
     }
     return JsonResponse(data)
-
-    # return HttpResponseRedirect(request.META.get('HTTP_REFERER'),
-    #                             reverse('post_detail', kwargs={'pk': pk}))

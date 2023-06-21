@@ -18,12 +18,19 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Posts',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=250)),
-                ('content', ckeditor.fields.RichTextField(blank=True, null=True)),
+                ('content', ckeditor.fields.RichTextField(blank=True,
+                                                          null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('likes', models.ManyToManyField(related_name='likes', to=settings.AUTH_USER_MODEL)),
+                ('author', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL)),
+                ('likes', models.ManyToManyField(
+                    related_name='likes', to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
