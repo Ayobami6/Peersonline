@@ -1,39 +1,62 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
-
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block style_sheet_and_js %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<script src="{% static 'scripts/script.js' %}"></script>
+{% endblock %}
+{% block content %}
 <h1>Welcome {{ user }}</h1>
 
 <div class="container-fluid">
     <div class="row g-3">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+        <div class="col-md-auto ms-4">
+            <div class="card" style="width: 15rem;">
+                <img src="{{ user.profile.profile_pic.url }}" width="60" height="60"
+                    class="rounded-circle ms-auto me-auto mt-4" alt="...">
+                <div class="ms-auto me-auto">
+                    <p class="ms-auto me-auto"> {% if user.profile.first_name and user.profile.last_name %}
+                        {{ user.profile.first_name }} {{ user.profile.last_name }}
+                        {% else %}
+                        {{ user.username }}
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>
         <div class="col-6">
-            <div class="card" style="width: 30rem;">
-                <img src="..." class="card-img-top" alt="...">
+            {% for post in posts %}
+            <div class="card ms-5 post-container" style="width: 30rem;" id="post-container">
+                <small><img src="{{ post.author.profile.profile_pic.url }}" width="60" height="60"
+                        class="rounded-circle" alt="...">
+                </small>
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                    <h5 class="card-title"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h5>
+                    <p class="card-text">{{ post.content|safe }}</p>
                 </div>
+
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">{{ post.author.profile.first_name }}</li>
                     <li class="list-group-item">A second item</li>
                     <li class="list-group-item">A third item</li>
                 </ul>
                 <div class="card-body">
                     <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <div id="like">
+                        <small id="like_count"></small><button data-href="{% url 'like' post.pk %}"
+                            class="btn btn-primary" id="like-button" data-pk="{{ post.pk }}">Like</button>
+                        <span id="like-count">{{ post.total_likes }}
+                        </span> Like{{ post.total_likes|pluralize }}
+                    </div>
+                    <a href="{% url 'post_update' post.pk %}" class="card-link">Edit</a>
+                    <a href="{% url 'post_delete' post.pk %}" class="card-link">Delete</a>
                 </div>
             </div>
+            <br>
+            {% endfor %}
         </div>
-        <div class="col">
-            <div class="card" style="width: 15rem;">
+        <div class="col-md-auto">
+            <div class="card" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the

@@ -72,7 +72,7 @@ def test_profile_creation():
     # Verify that a profile is created automatically
     assert Profile.objects.first().user == user
     assert Profile.objects.first().bio == ''
-    assert Profile.objects.first().profile_pic == 'profile_pics/default.png'
+    assert Profile.objects.first().profile_pic == 'profile_img/default.png'
     assert Profile.objects.first().openai_key == ''
     assert Profile.objects.first().first_name == ''
     assert Profile.objects.first().last_name == ''
