@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from dotenv import load_dotenv
 from . forms import AskGPTForm
 from utils.encryption import decrypt_data
+from django.core.cache import cache
 
 
 @login_required(login_url="/home/login")
@@ -14,13 +15,17 @@ def AskGPTView(request):
     # get user id from request
     user = request.user
     # get the openai api key from user profile
+    user_id = user.id
     api_key_encrpted = user.profile.openai_key
-    # decrypt the api key
-    api_key = decrypt_data(api_key_encrpted)
+    cached_key = cache.get("encrypted_key")
+    if not cached_key:
+        # decrypt the api key
+        api_key = decrypt_data(api_key_encrpted)
+        cache.set("encrypted_key", api_key, timeout=3600)
 
     data = None
     if request.method == "POST":
-        openai.api_key = api_key
+        openai.api_key = cached_key
         user_query = request.POST.get('user_query')
         user_prompt = user_query
         chat_response = openai.Completion.create(
