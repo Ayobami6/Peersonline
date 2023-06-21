@@ -66,7 +66,7 @@ def LikeView(request, pk):
     post.refresh_from_db()
     total_likes = post.total_likes()
     data = {
-        total_likes: total_likes,
+        'total_likes': total_likes,
     }
     return JsonResponse(data)
 

@@ -97,6 +97,8 @@
 // 4th try
 $(document).ready(function () {
   var csrftoken = getCookie("csrftoken");
+  var postId = $("#like-button").attr("data-pk");
+  var like_count_id = `${postId}-like-count`;
   $(document).on("click", "#like-button", function () {
     $.ajax({
       url: $(this).attr("data-href"),
@@ -104,6 +106,14 @@ $(document).ready(function () {
       headers: { "X-CSRFToken": csrftoken },
       data: {
         post_id: $(this).attr("data-pk"),
+      },
+      success: function (response) {
+        $("#like_count").empty();
+        // $("span#like_count").text(response.total_likes);
+        $(`span#${like_count_id}`).text(response.total_likes);
+        // document.getElementById(like_count_id).innerHTML = response.total_likes;
+        console.log(response.total_likes);
+        // document.getElementById("like_count").innerHTML = response.total_likes;
       },
     });
   });
