@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # Installed apps
     'users',
     'posts',
+    'askgpt',
 
     # Third party apps
     'ckeditor',

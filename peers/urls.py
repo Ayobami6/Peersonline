@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('users.urls')),  # new
     path('accounts/', include('allauth.urls')),
-    path('posts/', include('posts.urls')),  # new
+    path('posts/', include('posts.urls')),
+    path('askgpt/', include('askgpt.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
