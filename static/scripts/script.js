@@ -124,7 +124,7 @@
 //   $("#like-count").empty();
 //   $("span#like-count").text(total_likes);
 // }
-
+// TODO: fix the like pluralize
 $(document).ready(function () {
   var csrftoken = getCookie("csrftoken");
 
@@ -143,7 +143,12 @@ $(document).ready(function () {
       },
       success: function (response) {
         console.log(response.total_likes);
-        like_count.html(response.total_likes);
+        like_count.text(response.total_likes);
+        if (response.total_likes != 1) {
+          $(this).text("Likes");
+        } else {
+          $(this).text("Like");
+        }
       },
     });
   });
