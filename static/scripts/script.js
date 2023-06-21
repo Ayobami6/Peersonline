@@ -1,3 +1,4 @@
+// First Like button try
 $(document).ready(function () {
   var csrftoken = getCookie("csrftoken");
   $("#like-button").click(function () {
@@ -13,6 +14,30 @@ $(document).ready(function () {
     });
   });
 });
+
+// Second Like button try
+$(document).ready(function () {
+  var csrftoken = getCookie("csrftoken");
+  $("#like-button").click(function () {
+    var pk = $(this).attr("data-pk");
+    $.ajax({
+      url: `posts/like/${pk}`,
+      type: "POST",
+      headers: { "X-CSRFToken": csrftoken },
+      success: function (response) {
+        $(this).text("Liked");
+        localStorage.setItem("like", "Liked");
+      },
+    });
+  });
+});
+
+var like = localStorage.getItem("like");
+if (like === "Liked") {
+  $("#like-button").text("Like");
+} else {
+  $("#like-button").text("Liked");
+}
 
 function getCookie(name) {
   var cookieValue = null;

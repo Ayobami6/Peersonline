@@ -42,8 +42,9 @@
                 </ul>
                 <div class="card-body">
                     <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                    <!-- <small id="like-count"></small><button id="like-button" data-pk="{{ post.id }}">Like</button> -->
+                    <!-- <a href="#" class="card-link">Like</a> -->
+                    <span id="like_count">{{ post.total_likes }}</span> Like{{ post.total_likes|pluralize }}
+                    <small id="like-count"></small><button id="like-button" data-pk="{{ post.id }}">Like</button>
                     <a href="{% url 'post_update' post.pk %}" class="card-link">Edit</a>
                     <a href="{% url 'post_delete' post.pk %}" class="card-link">Delete</a>
                 </div>

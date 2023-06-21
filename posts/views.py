@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Posts
 from .forms import PostsForms
 from django.urls import reverse_lazy, reverse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 # Create your views here.
 
 
@@ -63,9 +63,5 @@ def LikeView(request, pk):
     else:
         post.likes.add(request.user)
     post.save()
-    post.refresh_from_db()
-    total_likes = post.total_likes()
-    response_data = {
-        'total_likes': total_likes,
-    }
-    return JsonResponse(response_data)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'),
+                                reverse('post_detail', kwargs={'pk': pk}))
