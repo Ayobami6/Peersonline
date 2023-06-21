@@ -95,25 +95,55 @@
 // }
 
 // 4th try
+// $(document).ready(function () {
+//   var csrftoken = getCookie("csrftoken");
+//   var postId = $("#like-button").attr("data-pk");
+//   var like_count_id = `${postId}-like-count`;
+//   $(document).on("click", "#like-button", function () {
+//     $.ajax({
+//       url: $(this).attr("data-href"),
+//       type: "POST",
+//       headers: { "X-CSRFToken": csrftoken },
+//       data: {
+//         post_id: $(this).attr("data-pk"),
+//       },
+//       success: function (response) {
+//         setTotalLikes(response.total_likes);
+//         // $("#like_count").empty();
+//         // $("span#like_count").text(response.total_likes);
+//         // $(`span#${like_count_id}`).text(response.total_likes);
+//         // document.getElementById(like_count_id).innerHTML = response.total_likes;
+//         // console.log(response.total_likes);
+//         // document.getElementById("like_count").innerHTML = response.total_likes;
+//       },
+//     });
+//   });
+// });
+
+// function setTotalLikes(total_likes) {
+//   $("#like-count").empty();
+//   $("span#like-count").text(total_likes);
+// }
+
 $(document).ready(function () {
   var csrftoken = getCookie("csrftoken");
-  var postId = $("#like-button").attr("data-pk");
-  var like_count_id = `${postId}-like-count`;
-  $(document).on("click", "#like-button", function () {
+
+  $(document).on("click", "div#like", function () {
+    var likeButton = $(this).find("#like-button");
+    var post_id = likeButton.attr("data-pk");
+    var href = likeButton.attr("data-href");
+    var like_count = $(this).find("#like-count");
+
     $.ajax({
-      url: $(this).attr("data-href"),
+      url: href,
       type: "POST",
       headers: { "X-CSRFToken": csrftoken },
       data: {
-        post_id: $(this).attr("data-pk"),
+        post_id: post_id,
       },
       success: function (response) {
-        $("#like_count").empty();
-        // $("span#like_count").text(response.total_likes);
-        $(`span#${like_count_id}`).text(response.total_likes);
-        // document.getElementById(like_count_id).innerHTML = response.total_likes;
         console.log(response.total_likes);
-        // document.getElementById("like_count").innerHTML = response.total_likes;
+        like_count.html(response.total_likes);
       },
     });
   });

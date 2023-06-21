@@ -42,10 +42,12 @@
                 </ul>
                 <div class="card-body">
                     <a href="#" class="card-link">Card link</a>
-                    <small id="like_count"></small><button data-href="{% url 'like' post.pk %}" class="btn btn-primary"
-                        id="like-button" data-pk="{{ post.pk }}">Like</button>
-                    <span id="{{ post.pk }}-like-count">{{ post.total_likes }}
-                    </span> Like{{ post.total_likes|pluralize }}
+                    <div id="like">
+                        <small id="like_count"></small><button data-href="{% url 'like' post.pk %}"
+                            class="btn btn-primary" id="like-button" data-pk="{{ post.pk }}">Like</button>
+                        <span id="like-count">{{ post.total_likes }}
+                        </span> Like{{ post.total_likes|pluralize }}
+                    </div>
                     <a href="{% url 'post_update' post.pk %}" class="card-link">Edit</a>
                     <a href="{% url 'post_delete' post.pk %}" class="card-link">Delete</a>
                 </div>
