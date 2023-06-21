@@ -20,7 +20,7 @@ class HomeView(ListView):
     context_object_name = 'posts'
     template_name = 'users/home.html'
     # oreder the posts by the most recent
-    ordering = ['-created_at']
+    # ordering = ['-created_at']
 
     def get_context_data(self, **kwargs):
         """ This method is used to get the context data """

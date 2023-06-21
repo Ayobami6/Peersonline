@@ -63,5 +63,12 @@ def LikeView(request, pk):
     else:
         post.likes.add(request.user)
     post.save()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'),
-                                reverse('post_detail', kwargs={'pk': pk}))
+    post.refresh_from_db()
+    total_likes = post.total_likes()
+    data = {
+        total_likes: total_likes,
+    }
+    return JsonResponse(data)
+
+    # return HttpResponseRedirect(request.META.get('HTTP_REFERER'),
+    #                             reverse('post_detail', kwargs={'pk': pk}))
