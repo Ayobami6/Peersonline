@@ -71,3 +71,13 @@ def LikeView(request, pk):
         'total_likes': total_likes,
     }
     return JsonResponse(data)
+
+
+def SearchView(request):
+    """ This function is used to search a post """
+    query = request.GET.get('query')
+    posts = Posts.objects.filter(title__icontains=query)
+    context = {
+        'posts': list(posts.values()),
+    }
+    return JsonResponse(context)

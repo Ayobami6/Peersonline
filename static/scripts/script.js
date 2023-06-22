@@ -152,6 +152,22 @@ $(document).ready(function () {
       },
     });
   });
+  $("form#search-form").on("submit", function (e) {
+    e.preventDefault();
+    var query = $("input#search-input").val();
+    var searchButton = $(this).find("#search-button");
+    $.ajax({
+      url: `posts/search`,
+      type: "GET",
+      headers: { "X-CSRFToken": csrftoken },
+      data: {
+        query: query,
+      },
+      success: function (response) {
+        console.log(response.posts);
+      },
+    });
+  });
 });
 
 function getCookie(name) {
