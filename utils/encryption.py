@@ -3,7 +3,11 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-encryption_key = Fernet.generate_key()
+with open('key.key', 'rb') as key_file:
+    encryption_key = key_file.read()
+
+# encryption_key = Fernet.generate_key()
+# encryption_key = os.getenv("ENCRYPTION_KEY")
 
 
 def encrypt_data(data):
