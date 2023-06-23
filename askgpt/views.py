@@ -20,8 +20,9 @@ def askgpt_view(request):
     cached_key = cache.get("encrypted_key")
     if not cached_key:
         # decrypt the api key
-        api_key = decrypt_data(api_key_encrpted)
-        cache.set("encrypted_key", api_key, timeout=3600)
+        if api_key_encrpted:
+            api_key = decrypt_data(api_key_encrpted)
+            cache.set("encrypted_key", api_key, timeout=3600)
 
     data = None
     if request.method == "POST":

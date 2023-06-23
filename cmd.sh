@@ -12,11 +12,19 @@ declare -A djangoCommands=(
     ["dbshell"]="python manage.py dbshell"
     ["help"]="help"
 )
+
+if [ -z "$1" ]; then
+    echo "No command provided"
+    echo "Run 'cmd.sh help' for help"
+    exit 1
+else
+    command=${djangoCommands["$1"]}
+fi
 command=${djangoCommands["$1"]}
 
 runcmd () {
     echo "Executing: $command"
-    eval $command
+    eval "$command"
 }
 
 runhelp () {
@@ -26,12 +34,13 @@ runhelp () {
         echo "  $key: ${djangoCommands[$key]}"
     done
 }
-if [ "$command"  == "help" ]; then
-    runhelp "$@"
-elif [ "$command" ]; then
-    runcmd "$@"
-else 
+if [ -z "$command" ]; then
     echo "Invalid command"
     echo "Run 'cmd.sh help' for help"
     exit 1
+elif [ "$command"  == "help" ]; then
+    runhelp "$@"
+else
+    runcmd "$@"
+      
 fi
