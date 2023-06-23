@@ -21,7 +21,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='mentorsession',
             name='mentor_full_name',
-            field=models.CharField(default=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL), max_length=250),
+            field=models.CharField(default=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL), max_length=250),
         ),
         migrations.AddField(
             model_name='mentorsession',
