@@ -165,6 +165,15 @@ $(document).ready(function () {
       },
       success: function (response) {
         console.log(response.posts);
+        for (var i = 0; i < response.posts.length; i++) {
+          var post = response.posts[i];
+          console.log(post.id);
+          console.log(post.title);
+          console.log(post.content);
+          console.log(post.author);
+          console.log(post.created_at);
+          console.log(post.likes);
+        }
       },
     });
   });

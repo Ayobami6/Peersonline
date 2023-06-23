@@ -56,7 +56,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('home')
 
 
-def LikeView(request, pk):
+def like_view(request, pk):
     """ This function is used to like a post and unlike a post
     """
     post = Posts.objects.get(id=pk)
@@ -73,7 +73,7 @@ def LikeView(request, pk):
     return JsonResponse(data)
 
 
-def SearchView(request):
+def search_view(request):
     """ This function is used to search a post """
     query = request.GET.get('query')
     posts = Posts.objects.filter(title__icontains=query)

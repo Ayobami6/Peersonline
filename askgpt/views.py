@@ -11,7 +11,7 @@ from django.core.cache import cache
 
 
 @login_required(login_url="/home/login")
-def AskGPTView(request):
+def askgpt_view(request):
     # get user id from request
     user = request.user
     # get the openai api key from user profile
