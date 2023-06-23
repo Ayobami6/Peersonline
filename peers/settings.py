@@ -44,12 +44,16 @@ INSTALLED_APPS = [
     'users',
     'posts',
     'askgpt',
+    'api.mentor_api',
+    'mentor',
+
 
     # Third party apps
     'ckeditor',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'rest_framework',
 
     # allauth providers
     'allauth.socialaccount.providers.google',
@@ -66,6 +70,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
+}
 
 ROOT_URLCONF = 'peers.urls'
 
