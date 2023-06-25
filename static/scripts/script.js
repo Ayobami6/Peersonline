@@ -177,6 +177,25 @@ $(document).ready(function () {
       },
     });
   });
+
+  $("#myForm").on("submit", function (e) {
+    e.preventDefault();
+    var formData = $(this).serialize();
+    var api_endpoint = "api/mentor_sessions/";
+    $.ajax({
+      url: api_endpoint,
+      type: "POST",
+      headers: { "X-CSRFToken": csrftoken },
+      data: formData,
+      success: function (response) {
+        console.log;
+        alert("success");
+      },
+      error: function (error) {
+        alert("Failed something went wrong!");
+      },
+    });
+  });
 });
 
 function getCookie(name) {

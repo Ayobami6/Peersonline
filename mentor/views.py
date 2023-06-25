@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from .forms import MentorForm
-from django.views.generic import CreateView
+from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
 
 
 # Create your views here.
 
-class MentorView(CreateView):
+class MentorFormView(FormView):
     form_class = MentorForm
     template_name = 'mentor/mentor.html'
-    success_url = '/mentor/register_session'
+    success_url = reverse_lazy('mentor')
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)

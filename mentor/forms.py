@@ -3,10 +3,12 @@ from .models import MentorSession
 
 
 class MentorForm(forms.ModelForm):
+    time = forms.DateTimeField(widget=forms.SelectDateWidget())
+
     class Meta:
         model = MentorSession
         fields = ['mentor_full_name', 'topic_title', 'description',
-                  'venue', 'venue_link', 'time', 'duration']
+                  'venue', 'venue_link', 'time', 'duration', 'mentor']
         widgets = {
             'mentor_full_name':
                 forms.TextInput(
@@ -26,11 +28,10 @@ class MentorForm(forms.ModelForm):
                 forms.TextInput(
                     attrs={'class': 'form-control',
                            'placeholder': 'Venue Link'}),
-            'time':
-                forms.DateTimeInput(
-                    attrs={'class': 'form-control', 'placeholder': 'Time'}),
             'duration':
                 forms.NumberInput(
                     attrs={'class': 'form-control',
                            'placeholder': 'Duration'}),
+            'mentor':
+                forms.Select(attrs={'class': 'form-control'}),
         }
