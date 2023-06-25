@@ -188,12 +188,30 @@ $(document).ready(function () {
         type: "POST",
         data: formData,
         success: function (response) {
-          console.log;
-          alert("success");
+          $("#alert-placeholder").html(`<div
+          class="alert alert-success d-flex align-items-center"
+          role="alert">
+          <svg
+            class="bi flex-shrink-0 me-2"
+            width="24"
+            height="24"
+            role="img"
+            aria-label="Success:">
+            <use xlink:href="#check-circle-fill" />
+          </svg>
+          <div>An example success alert with an icon</div>
+        </div>`);
         },
         error: function (error) {
           console.log(formData);
-          alert("Failed something went wrong!");
+          $("#alert-placeholder").html(`
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+          <div>
+          An example danger alert with an icon
+          </div>
+          </div>
+          `);
         },
       });
     });

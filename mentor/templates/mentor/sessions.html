@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Sessions{% endblock %}
+{% block style_sheet_and_js %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<script src="{% static 'scripts/script.js' %}"></script>
+{% endblock %}
+{% block content %}
+<h2>PLD Sessions</h2>
+
+<div class="container">
+    {% if sessions %}
+    {% for session in sessions %}
+    <div class="card">
+        <div class="card-header">
+            Featured
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ session.topic_title }}</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="{{ session.venue_link }}" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+    {% endif %}
+</div>
+
+
+
+{% endblock %}
