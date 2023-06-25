@@ -12,11 +12,11 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=250, blank=True)
     last_name = models.CharField(max_length=250, blank=True)
-    bio = models.TextField(max_length=500, blank=True)
+    bio = models.TextField(max_length=1000, blank=True)
     profile_pic = models.ImageField(
         upload_to='profile_img',
         blank=True, default='profile_img/default.png')
-    openai_key = models.CharField(max_length=250, blank=True)
+    openai_key = models.CharField(max_length=500, blank=True)
 
     def save(self, *args, **kwargs):
         """ Overwrite the save method to encrypt the openai_key
