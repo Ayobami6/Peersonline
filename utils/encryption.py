@@ -6,12 +6,16 @@ with open('key.key', 'rb') as key_file:
 
 
 def encrypt_data(data):
+    """ This function is used to encrypt data
+    """
     f = Fernet(encryption_key)
     encrypt_data = f.encrypt(data.encode()).decode()
     return encrypt_data
 
 
 def decrypt_data(encrypted_data):
+    """ This function is used to decrypt data
+    """
     f = Fernet(encryption_key)
     decrypted_data = f.decrypt(encrypted_data.encode()).decode()
     return decrypted_data

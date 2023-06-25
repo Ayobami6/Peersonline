@@ -4,6 +4,8 @@ from .widgets import DateTimeSelectWidget
 
 
 class MentorForm(forms.ModelForm):
+    """ This class is used to create a mentor session form
+    """
     time = forms.DateTimeField(widget=forms.DateTimeInput(
         attrs={'class': 'form-control', 'placeholder': '2023-01-01 00:00:00'},
     ),

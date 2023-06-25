@@ -12,6 +12,8 @@ from django.core.cache import cache
 
 @login_required(login_url="/home/login")
 def askgpt_view(request):
+    """ This function is used to render the askgpt view
+    """
     # get user id from request
     user = request.user
     # get the openai api key from user profile
@@ -19,7 +21,7 @@ def askgpt_view(request):
     api_key_encrpted = user.profile.openai_key
     cached_key = cache.get("encrypted_key")
     if not cached_key:
-        # decrypt the api key
+        # decrypt the api key if its encrypted
         if api_key_encrpted:
             api_key = decrypt_data(api_key_encrpted)
             cache.set("encrypted_key", api_key, timeout=3600)

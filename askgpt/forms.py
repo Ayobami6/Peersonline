@@ -2,6 +2,8 @@ from django import forms
 
 
 class AskGPTForm(forms.Form):
+    """ This class is used to create the ask gpt form
+    """
     ask_gpt = forms.CharField(label='Ask GPT', max_length=1000)
 
     class Meta:
