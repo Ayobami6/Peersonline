@@ -1,9 +1,14 @@
 from django import forms
 from .models import MentorSession
+from .widgets import DateTimeSelectWidget
 
 
 class MentorForm(forms.ModelForm):
-    time = forms.DateTimeField(widget=forms.SelectDateWidget())
+    time = forms.DateTimeField(widget=forms.DateTimeInput(
+        attrs={'class': 'form-control', 'placeholder': '2023-01-01 00:00:00'},
+    ),
+        input_formats=['%Y-%m-%d %H:%M:%S']
+    )
 
     class Meta:
         model = MentorSession
