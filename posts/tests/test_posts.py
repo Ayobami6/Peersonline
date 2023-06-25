@@ -95,3 +95,42 @@ def test_post_update_view(client, create_post_data):
     assert post.title == 'test post'
     assert post.content != 'test this should be updated'
     assert post.content == 'test content'
+
+
+@pytest.mark.django_db
+def test_post_delete_view(client, create_post_data):
+    user, form_data = create_post_data
+    # login the user
+    client.login(username='testuser', password='password')
+    post = Posts.objects.create(
+        author=user, title='test update this',
+        content='test this should be updated')
+    url = reverse('post_delete', kwargs={'pk': post.id})
+    response = client.post(url)
+    assert response.status_code == 302
+    assert response.url == reverse('home')
+    assert not Posts.objects.filter(id=post.id).exists()
+
+# test like and unlike views
+
+
+@pytest.mark.django_db
+def test_likeview_like_and_unlike(client, create_post_data):
+    user, form_data = create_post_data
+    # create post
+    post = Posts.objects.create(
+        author=user, title='test post', content='test content')
+    # login the user
+    client.login(username='testuser', password='password')
+    url = reverse('like', kwargs={'pk': post.id})
+    response = client.post(url)
+    assert response.status_code == 200
+    assert isinstance(response.json(), dict)
+    assert response.json() == {'total_likes': 1}
+    assert post.total_likes() == 1
+    # unlike the post
+    response = client.post(url)
+    assert response.status_code == 200
+    assert isinstance(response.json(), dict)
+    assert response.json() == {'total_likes': 0}
+    assert post.total_likes() == 0

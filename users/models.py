@@ -1,11 +1,9 @@
 from django.db import models
-from cryptography.fernet import Fernet
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from utils.encryption import encrypt_data
 # Create your models here.
-
-encryption_key = Fernet.generate_key()
 
 
 class Profile(models.Model):
@@ -23,9 +21,8 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         """ Overwrite the save method to encrypt the openai_key
         """
-        f = Fernet(encryption_key)
         if self.openai_key:
-            self.openai_key = f.encrypt(self.openai_key.encode()).decode()
+            self.openai_key = encrypt_data(self.openai_key)
         super().save(*args, **kwargs)
 
     def __str__(self):

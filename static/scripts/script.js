@@ -152,6 +152,70 @@ $(document).ready(function () {
       },
     });
   });
+  $("form#search-form").on("submit", function (e) {
+    e.preventDefault();
+    var query = $("input#search-input").val();
+    var searchButton = $(this).find("#search-button");
+    $.ajax({
+      url: `posts/search`,
+      type: "GET",
+      headers: { "X-CSRFToken": csrftoken },
+      data: {
+        query: query,
+      },
+      success: function (response) {
+        console.log(response.posts);
+        for (var i = 0; i < response.posts.length; i++) {
+          var post = response.posts[i];
+          console.log(post.id);
+          console.log(post.title);
+          console.log(post.content);
+          console.log(post.author);
+          console.log(post.created_at);
+          console.log(post.likes);
+        }
+      },
+    });
+  });
+
+  $("#form-button").click(function () {
+    $("#session-form").submit(function (e) {
+      e.preventDefault();
+      var formData = $(this).serialize();
+      var api_endpoint = "api/mentor_sessions/";
+      $.ajax({
+        url: api_endpoint,
+        type: "POST",
+        data: formData,
+        success: function (response) {
+          $("#alert-placeholder").html(`<div
+          class="alert alert-success d-flex align-items-center"
+          role="alert">
+          <svg
+            class="bi flex-shrink-0 me-2"
+            width="24"
+            height="24"
+            role="img"
+            aria-label="Success:">
+            <use xlink:href="#check-circle-fill" />
+          </svg>
+          <div>An example success alert with an icon</div>
+        </div>`);
+        },
+        error: function (error) {
+          console.log(formData);
+          $("#alert-placeholder").html(`
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+          <div>
+          An example danger alert with an icon
+          </div>
+          </div>
+          `);
+        },
+      });
+    });
+  });
 });
 
 function getCookie(name) {

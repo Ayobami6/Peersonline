@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Mentor Peers{% endblock %}
+{% block style_sheet_and_js %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<script src="{% static 'scripts/script.js' %}"></script>
+{% endblock %}
+{% block content %}
+<h2>Register to mentor</h2>
+<div id="alert-placeholder"></div>
+<div class="container">
+    <div class="form-group">
+        <form id="session-form" enctype="multipart/form-data" class="row g-3">
+            {% csrf_token %}
+            {{ form.media }}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <div class="form-group">
+                <button id="form-button" type="submit" class="btn btn-primary">Submit</button>
+                <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
