@@ -19,8 +19,10 @@ class DateTimeSelectWidget(forms.MultiWidget):
 
     def decompress(self, value):
         if value:
-            return [value.year, value.month, value.day, value.hour, value.minute]
+            return [value.year, value.month,
+                    value.day, value.hour, value.minute]
         return [None, None, None, None, None]
 
     def format_output(self, rendered_widgets):
-        return '<div class="datetime-select-container">{}</div>'.format(''.join(rendered_widgets))
+        return '<div class="datetime-select-container">\
+            {}</div>'.format(''.join(rendered_widgets))
