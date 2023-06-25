@@ -30,17 +30,6 @@
     text-decoration: none;
   }
 
-  @media (max-width: 600px) {
-    .res a{
-       position: absolute;
-       right: 0;
-       top: 0;
-       padding: 5px;
-       margin-right: 10px; 
-    }
-    
-  }
-
 a {
     text-decoration: none;
 }
