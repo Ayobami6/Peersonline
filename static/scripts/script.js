@@ -216,6 +216,28 @@ $(document).ready(function () {
       });
     });
   });
+  function loadLatestSession() {
+    $.ajax({
+      url: "api/mentor_sessions/",
+      type: "GET",
+      success: function (response) {
+        response.sort((a, b) => {
+          return new Date(b.created_at) - new Date(a.created_at);
+        });
+        var latest_session = response[0];
+        console.log(latest_session);
+        $("#feat-session").html(
+          `<div class="card" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+              <p class="card-text">${latest_session.topic_title}.</p>
+          </div>
+      </div>`
+        );
+      },
+    });
+  }
+  loadLatestSession();
 });
 
 function getCookie(name) {
