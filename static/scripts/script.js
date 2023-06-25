@@ -199,7 +199,7 @@ $(document).ready(function () {
             aria-label="Success:">
             <use xlink:href="#check-circle-fill" />
           </svg>
-          <div>An example success alert with an icon</div>
+          <div>Sucess! Thanks for reqistering to mentor peers</div>
         </div>`);
         },
         error: function (error) {
@@ -208,7 +208,7 @@ $(document).ready(function () {
           <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
           <div>
-          An example danger alert with an icon
+          Failed to register to mentor peers. Please try again.
           </div>
           </div>
           `);
