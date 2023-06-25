@@ -1,7 +1,7 @@
 from cryptography.fernet import Fernet
 import os
 from dotenv import load_dotenv
-from encryption import encrypt_data, decrypt_data, encryption_key
+from utils.encryption import encrypt_data, decrypt_data, encryption_key
 load_dotenv()
 
 some_key = "12999dbgsd"
