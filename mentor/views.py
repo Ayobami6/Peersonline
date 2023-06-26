@@ -22,7 +22,7 @@ class MentorFormView(FormView):
 
 class MentorListView(ListView):
     """ This class is used to list all the mentor sessions
-    """    
+    """
     model = MentorSession
     context_object_name = 'sessions'
     template_name = 'mentor/sessions.html'

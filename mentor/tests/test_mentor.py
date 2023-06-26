@@ -45,3 +45,13 @@ def test_register_session_url(client, create_mentor_session_data):
     assert 'mentor/mentor.html' in response.template_name
     assert isinstance(response.context['form'], MentorForm)
     assert 'Register' in str(response.content)
+
+
+@pytest.mark.django_db
+def test_sessions_list_url(client, create_mentor_session_data):
+    user, session_data = create_mentor_session_data
+    client.login(username='testuser', password='password')
+    response = client.get(path='/sessions')
+    assert response.status_code == 200
+    assert 'mentor/sessions.html' in response.template_name
+    assert 'sessions' in response.context
