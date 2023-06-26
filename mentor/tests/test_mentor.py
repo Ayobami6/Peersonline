@@ -7,6 +7,8 @@ from mentor.forms import MentorForm
 
 @pytest.fixture
 def create_mentor_session_data():
+    """ Pytest fixture for mentor session data, and user
+    """
     user = User.objects.create_user(username='testuser', password='password')
     session_data = {'mentor': user.id,
                     'mentor_full_name': 'testuser',
@@ -21,6 +23,8 @@ def create_mentor_session_data():
 
 @pytest.mark.django_db
 def test_create_mentor_session_view(client, create_mentor_session_data):
+    """ Test to check if a mentor session is created
+    """
     user, session_data = create_mentor_session_data
     client.login(username='testuser', password='password')
     url = reverse('mentor')
@@ -38,6 +42,8 @@ def test_create_mentor_session_view(client, create_mentor_session_data):
 
 @pytest.mark.django_db
 def test_register_session_url(client, create_mentor_session_data):
+    """ Test to check if the register session url is working
+    """
     user, session_data = create_mentor_session_data
     client.login(username='testuser', password='password')
     response = client.get(path='/register_session')
@@ -49,6 +55,8 @@ def test_register_session_url(client, create_mentor_session_data):
 
 @pytest.mark.django_db
 def test_sessions_list_url(client, create_mentor_session_data):
+    """ Test to check if the sessions list url is working
+    """
     user, session_data = create_mentor_session_data
     client.login(username='testuser', password='password')
     response = client.get(path='/sessions')
