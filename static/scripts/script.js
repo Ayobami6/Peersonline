@@ -100,11 +100,20 @@ $(document).ready(function () {
         });
         var latest_session = response[0];
         console.log(latest_session);
+        const date = new Date(latest_session.time);
+        const localeDate = new Date(date);
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const options = { timeZone: timezone };
+        const time = localeDate.toLocaleTimeString("en-US", options);
+        const datetime = localeDate.toLocaleDateString("en-US", options);
         $("#feat-session").html(
           `<div class="card" style="width: 20rem;">
-          <img src="..." class="card-img-top" alt="...">
           <div class="card-body">
-              <p class="card-text">${latest_session.topic_title}.</p>
+              <div style="text-align:center;"><h3><strong>Latest Session</strong></h3></div>
+              <p class="card-text"> Session Topic: ${latest_session.topic_title}.</p>
+              <p class="card-text"> Description: ${latest_session.description}.</p>
+              <p class="card-text"> Date: ${datetime}.</p>
+              <p class="card-text"> Time: ${time}.</p>
           </div>
       </div>`
         );
