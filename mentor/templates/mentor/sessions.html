@@ -13,12 +13,12 @@
     {% for session in sessions %}
     <div class="card">
         <div class="card-header">
-            Featured
+            {{ session.topic_title }}
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ session.topic_title }}</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="{{ session.venue_link }}" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">Mentor: {{ session.mentor_full_name }}</h5>
+            <p class="card-text">{{ session.description }}</p>
+            <a href="{{ session.venue_link }}" class="btn btn-primary">Join Session</a>
         </div>
     </div>
     <br>
