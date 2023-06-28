@@ -114,6 +114,8 @@ $(document).ready(function () {
               <p class="card-text"> Description: ${latest_session.description}.</p>
               <p class="card-text"> Date: ${datetime}.</p>
               <p class="card-text"> Time: ${time}.</p>
+              <p class="card-text"> Location: ${latest_session.venue}.</p>
+              <a href="${latest_session.venue_link}" class="btn btn-primary">Join</a>
           </div>
       </div>`
         );
