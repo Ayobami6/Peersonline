@@ -112,6 +112,7 @@ $(document).ready(function () {
               <div style="text-align:center;"><h3><strong>Latest Session</strong></h3></div>
               <p class="card-text"> Session Topic: ${latest_session.topic_title}.</p>
               <p class="card-text"> Description: ${latest_session.description}.</p>
+              <p class="card-text"> Mentor: ${latest_session.mentor_full_name}.</p>
               <p class="card-text"> Date: ${datetime}.</p>
               <p class="card-text"> Time: ${time}.</p>
               <p class="card-text"> Location: ${latest_session.venue}.</p>
