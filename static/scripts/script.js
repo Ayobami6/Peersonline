@@ -101,7 +101,7 @@ $(document).ready(function () {
         var latest_session = response[0];
         console.log(latest_session);
         $("#feat-session").html(
-          `<div class="card" style="width: 18rem;">
+          `<div class="card" style="width: 20rem;">
           <img src="..." class="card-img-top" alt="...">
           <div class="card-body">
               <p class="card-text">${latest_session.topic_title}.</p>
