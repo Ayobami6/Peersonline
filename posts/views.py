@@ -59,7 +59,9 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 def like_view(request, pk):
     """ This function is used to like a post and unlike a post
     """
+    # get the post
     post = Posts.objects.get(id=pk)
+    # check the post if the user has liked it
     if post.likes.filter(id=request.user.id).exists():
         post.likes.remove(request.user)
     else:

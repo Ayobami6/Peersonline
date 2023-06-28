@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 
 
 class MentorSession(models.Model):
+    """ This class is used to create a mentor session table
+    """
     mentor = models.ForeignKey(User, on_delete=models.CASCADE)
     mentor_full_name = models.CharField(
         max_length=250,

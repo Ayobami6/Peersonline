@@ -9,6 +9,8 @@ from .models import MentorSession
 # Create your views here.
 
 class MentorFormView(FormView):
+    """ This class is used to create a mentor session
+    """
     form_class = MentorForm
     template_name = 'mentor/mentor.html'
     success_url = reverse_lazy('mentor')
@@ -19,6 +21,8 @@ class MentorFormView(FormView):
 
 
 class MentorListView(ListView):
+    """ This class is used to list all the mentor sessions
+    """
     model = MentorSession
     context_object_name = 'sessions'
     template_name = 'mentor/sessions.html'

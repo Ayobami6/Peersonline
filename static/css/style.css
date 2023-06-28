@@ -13,7 +13,7 @@
 /* Login Page styles */
 #sign-box {
     width: 500px;
-    background-color: white;
+    background-color: rgb(241, 241, 241);;
     height: 400px;
     border-radius: 10px;
     margin-top: 50px;
@@ -30,22 +30,16 @@
     text-decoration: none;
   }
 
-  @media (max-width: 600px) {
-    .res a{
-       position: absolute;
-       right: 0;
-       top: 0;
-       padding: 5px;
-       margin-right: 10px; 
-    }
-    
-  }
-
 a {
     text-decoration: none;
+    color: black;
 }
 
 #quote {
     margin-left: auto;
     margin-right: auto;
+}
+
+.bio p {
+    text-align: center !important;
 }

@@ -80,6 +80,8 @@ def test_post_detail_view(client, create_post_data):
 
 @pytest.mark.django_db
 def test_post_update_view(client, create_post_data):
+    """ Test that the post update view works correctly
+    """
     user, form_data = create_post_data
     # login the user
     client.login(username='testuser', password='password')
@@ -99,6 +101,8 @@ def test_post_update_view(client, create_post_data):
 
 @pytest.mark.django_db
 def test_post_delete_view(client, create_post_data):
+    """ Test that the post delete view works correctly
+    """
     user, form_data = create_post_data
     # login the user
     client.login(username='testuser', password='password')
@@ -116,6 +120,8 @@ def test_post_delete_view(client, create_post_data):
 
 @pytest.mark.django_db
 def test_likeview_like_and_unlike(client, create_post_data):
+    """ Test that the like and unlike views work correctly
+    """
     user, form_data = create_post_data
     # create post
     post = Posts.objects.create(
