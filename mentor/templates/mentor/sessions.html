@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load tz %}
 {% block title %}Sessions{% endblock %}
 {% block style_sheet_and_js %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
@@ -11,13 +12,22 @@
 <div class="container">
     {% if sessions %}
     {% for session in sessions %}
+    {% get_current_timezone as timeZone %}
     <div class="card">
         <div class="card-header">
-            {{ session.topic_title }}
+            <strong>{{ session.topic_title }}</strong>
         </div>
         <div class="card-body">
             <h5 class="card-title">Mentor: {{ session.mentor_full_name }}</h5>
             <p class="card-text">{{ session.description }}</p>
+            <p class="card-text">Date: {% localtime on %}
+                {{ session.time|date:"l d F Y" }}
+                {% endlocaltime %}
+            </p>
+            <p class="card-text">Time: {% localtime on %}
+                {{ session.time|time:"H:i" }}
+                {% endlocaltime %}</p>
+            <p class="card-text">Duration: {{ session.duration }} hr{{ session.duration|pluralize }} </p>
             <a href="{{ session.venue_link }}" class="btn btn-primary">Join Session</a>
         </div>
     </div>
