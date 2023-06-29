@@ -1,7 +1,44 @@
 {% extends 'base.html' %} {% block title %} {{ post.title }} {% endblock %} {% block content %}
 
-<h1><img src="{{ post.author.profile.profile_pic.url }}" alt=""></h1>
+<div style="align-content: center;">
+    <div class="ms-auto me-auto mt-5" style="max-width: 100%; width: 40rem;">
+        <div>
+            <div class="container">
+                <div style="text-align: center;"><strong>
+                        <h1 style="font-weight: 800;">{{ post.title }}</h1>
+                    </strong></div>
 
-<h2></h2>
+                <div class="row">
+                    <div class="col-1">
+                        <img src="{{ post.author.profile.profile_pic.url }}" width="50" height="50"
+                            class="rounded-circle mt-1" alt="...">
+                    </div>
+                    <div class="col-6 res ml">
+                        <div>
+                            <small>{{ post.author.profile.first_name }}
+                                {{ post.author.profile.last_name }}</small>
+                        </div>
+                        <p class="mt-0"><small>{{ post.created_at|timesince }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body"> 
+            <p class="card-text">{{ post.content|safe }}</p>
+        </div>
+        <div class="card-body">
+            <div id="like">
+                <small id="like_count"></small><button data-href="{% url 'like' post.pk %}" id="like-button"
+                    class="btn btn-light" data-pk="{{ post.pk }}"><i class="bi bi-suit-heart"></i></button>
+                <span id="like-count">{{ post.total_likes }}
+                </span> Like{{ post.total_likes|pluralize }}
+            </div>
+            {% if post.author == user %}
+            <a href="{% url 'post_update' post.pk %}" class="card-link">Edit</a>
+            <a href="{% url 'post_delete' post.pk %}" class="card-link">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -16,7 +16,7 @@ class Profile(models.Model):
     profile_pic = models.ImageField(
         upload_to='profile_img',
         blank=True, default='profile_img/default.png')
-    openai_key = models.CharField(max_length=500, blank=True)
+    openai_key = models.CharField(max_length=5000, blank=True)
 
     def save(self, *args, **kwargs):
         """ Overwrite the save method to encrypt the openai_key
