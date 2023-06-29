@@ -42,8 +42,10 @@ def askgpt_view(request):
             advice on Linux, Programming Languages, Software Engineering \
             Concepts and Education.\n If possible make references\n\
             to publications for further reading by appending the \
-            name of the publication as a search query to this url \
-            https://annas-archive.org/. for example: \
+            name of the publication to this \
+            exact url https://annas-archive.org/search?q= \
+            do not change anything in the url just append the publication\
+            name for example: \
             https://annas-archive.org/search?q=flask web development by \
             Grinberg, Miguel. You must critically \
             percieve the question and make sure\
