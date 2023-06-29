@@ -25,7 +25,7 @@ sk = 'django-insecure-$89l+jm2^kxzac0gdw022*c)vddly@v^6cleh8m4th=*%chv0('
 SECRET_KEY = sk
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['100.25.17.109', 'beta.peersonline.tech']
 
