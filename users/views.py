@@ -51,8 +51,14 @@ class ProfileView(DetailView):
     def get_context_data(self, **kwargs):
         """ This method is used to get the context data """
         context = super().get_context_data(**kwargs)
-        user_profile = self.request.user.profile
+        user = self.request.user
+        user_posts = Posts.objects.filter(author=user).order_by('-created_at')
+        # posts count
+        posts_count = user_posts.count()
+        user_profile = user.profile
         context['user_profile'] = user_profile
+        context['posts_count'] = posts_count
+        context['user_posts'] = user_posts
         return context
 
 
