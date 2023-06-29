@@ -19,16 +19,20 @@ def askgpt_view(request):
     # get the openai api key from user profile
     user_id = user.id
     api_key_encrpted = user.profile.openai_key
-    cached_key = cache.get("encrypted_key")
-    if not cached_key:
-        # decrypt the api key if its encrypted
-        if api_key_encrpted:
-            api_key = decrypt_data(api_key_encrpted)
-            cache.set("encrypted_key", api_key, timeout=3600)
+    # decrypt the api key if its encrypted
+    if api_key_encrpted:
+        api_key = decrypt_data(api_key_encrpted)
+        cache.set("encrypted_key", api_key, timeout=3600)
 
-    data = None
+    data = "AskGpt is an AI assistant that is an expert in Software \
+        Engineering. You can ask it questions about \
+            Software Engineering and it will \
+                give you an answer. \n \
+                    Example: \n \
+                        What is a variable? \n \
+                            "
     if request.method == "POST":
-        openai.api_key = cached_key
+        openai.api_key = api_key
         user_query = request.POST.get('user_query')
         user_prompt = user_query
         chat_response = openai.Completion.create(
@@ -36,8 +40,18 @@ def askgpt_view(request):
             prompt="You are an AI assisstant that is an Expert in Software \
             engineering\nYou know about Software Engineering\nYou can provide \
             advice on Linux, Programming Languages, Software Engineering \
-            Concepts and Education\n\nIf you are unable to provide an answer \
-            to a question please respond with the phrase \"I'm just an expert \
+            Concepts and Education.\n If possible make references\n\
+            to publications for further reading by appending the \
+            name of the publication as a search query to this url \
+            https://annas-archive.org/. for example: \
+            https://annas-archive.org/search?q=flask web development by \
+            Grinberg, Miguel. You must critically \
+            percieve the question and make sure\
+            the question is related \
+            to software engineering before you provide an answer,\
+            however, If the question is not related to sofware \
+            engineering at all! please\
+            respond with the phrase \"I'm just an expert \
             in Software engineering, can't help with \
             that\n\n " + "\n" + user_prompt,
             temperature=0.7,
