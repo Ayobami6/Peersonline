@@ -1,7 +1,11 @@
 {% extends 'base.html' %} {% load socialaccount %} {% block content %}
 
-<form method="post">
-  {% csrf_token %}
-  <button type="submit">Continue</button>
-</form>
+<div class="container">
+  <div class="mt-5">
+    <form method="post">
+      {% csrf_token %}
+      <button class="btn btn-outline-success" type="submit">Continue</button>
+    </form>
+  </div>
+</div>
 {% endblock %}
