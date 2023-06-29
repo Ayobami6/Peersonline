@@ -43,3 +43,14 @@ a {
 .bio p {
     text-align: center !important;
 }
+
+@media screen and (max-width: 600px) {
+    .res {
+        margin-left: 2.5rem;
+    }
+}
+@media screen and (min-width: 601px) {
+    .ml {
+        margin-left: 1rem;
+    }
+}
