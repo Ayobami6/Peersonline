@@ -8,10 +8,10 @@ from users.models import Profile
 def test_home_login_redirect(client):
     """ Test that the home page redirects to login if not logged in """
     # Send a GET request to the home page
-    response = client.get('/home')
+    response = client.get('/')
     # confirm that the user is redirected to the login page if not logged in
     assert response.status_code == 302
-    assert response.url == 'home/login?next=/home'
+    assert response.url == 'home/login?next=/'
 
 
 @pytest.mark.django_db
