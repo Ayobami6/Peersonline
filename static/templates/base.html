@@ -97,7 +97,7 @@
                     {% endif %}
                 </ul>
             </div>
-            <form class="d-flex">
+            <form class="d-flex search-form">
                 <input class="form-control me-2" id="search-input" name="query" type="search" placeholder="Search"
                     aria-label="Search">
                 <button class="btn btn-outline-success" type="submit" id="search-button">Search</button>
@@ -105,8 +105,7 @@
         </div>
     </nav>
     <div class="container-fluid">{% block content %} {% endblock %}</div>
-    <footer class="container-fluid" id="footer" style="
-                background-color: rgb(247, 247, 247);
+    <footer class="container-fluid bg-light" id="footer" style="
                 height: 4rem;
                 position: absolute;
                 bottom: 0;
