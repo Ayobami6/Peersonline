@@ -18,6 +18,7 @@ class MentorFormView(FormView):
     success_url = reverse_lazy('mentor')
 
     def form_valid(self, form):
+        """ This method is used to validate the form """
         form.save()
         return super().form_valid(form)
 
@@ -31,5 +32,7 @@ class MentorListView(ListView):
     ordering = ['-time']
 
     def get_queryset(self):
+        """ This method is used to get the queryset """
         queryset = super().get_queryset()
+        # gets the top 20 sessions
         return queryset[:20]
