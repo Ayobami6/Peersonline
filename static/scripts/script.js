@@ -2,6 +2,7 @@
 $(document).ready(function () {
   var csrftoken = getCookie("csrftoken");
 
+  // Like button functionality
   $(document).on("click", "div#like", function () {
     var likeButton = $(this).find("#like-button");
     var post_id = likeButton.attr("data-pk");
@@ -16,7 +17,6 @@ $(document).ready(function () {
         post_id: post_id,
       },
       success: function (response) {
-        console.log(response.total_likes);
         like_count.text(response.total_likes);
         if (response.total_likes != 1) {
           $(this).text("Likes");
@@ -26,6 +26,7 @@ $(document).ready(function () {
       },
     });
   });
+  // Search functionality
   $("form#search-form").on("submit", function (e) {
     e.preventDefault();
     var query = $("input#search-input").val();
@@ -52,6 +53,7 @@ $(document).ready(function () {
     });
   });
 
+  // Session form functionality
   $("#form-button").click(function () {
     $("#session-form").submit(function (e) {
       e.preventDefault();
@@ -77,7 +79,6 @@ $(document).ready(function () {
         </div>`);
         },
         error: function (error) {
-          console.log(formData);
           $("#alert-placeholder").html(`
           <div class="alert alert-danger d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -90,6 +91,7 @@ $(document).ready(function () {
       });
     });
   });
+  // load the latest session
   function loadLatestSession() {
     $.ajax({
       url: "api/mentor_sessions/",
@@ -98,12 +100,15 @@ $(document).ready(function () {
         response.sort((a, b) => {
           return new Date(b.created_at) - new Date(a.created_at);
         });
+        // get the latest session
         var latest_session = response[0];
-        console.log(latest_session);
+        // create a new date instance from the date object
         const date = new Date(latest_session.time);
         const localeDate = new Date(date);
+        // get user's timezone
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         const options = { timeZone: timezone };
+        // format the date and time
         const time = localeDate.toLocaleTimeString("en-US", options);
         const datetime = localeDate.toLocaleDateString("en-US", options);
         $("#feat-session").html(
@@ -125,7 +130,7 @@ $(document).ready(function () {
   }
   loadLatestSession();
 });
-
+// extract the csrf token from the cookie
 function getCookie(name) {
   var cookieValue = null;
   if (document.cookie !== "") {
