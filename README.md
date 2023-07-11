@@ -167,9 +167,15 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-#### Usage
+Change database settings in settings.py to your database settings
 
-Run
+- Run migrations
+
+```sh
+./cmd.sh m
+```
+
+- Run Server
 
 ```sh
 ./cmd.sh run
@@ -185,6 +191,10 @@ http://127.0.0.1:8000/
 
 If you encouter an issue setting up
 create an Issue [here](https://github.com/Ayobami6/Peersonline/issues)
+
+**Preview**
+![Login](static/assets/login.png)
+![Home](static/assets/home.png)
 
 </details>
 
