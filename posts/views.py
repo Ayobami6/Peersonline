@@ -28,18 +28,6 @@ class PostDetailView(DetailView):
     context_object_name = 'post'
     template_name = 'posts/post_detail.html'
 
-    def get_context_data(self, **kwargs):
-        """ This method is used to get the context data """
-        context = super().get_context_data(**kwargs)
-        post = Posts.objects.get(id=self.kwargs['pk'])
-        total_likes = post.total_likes()
-        liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
-        context['total_likes'] = total_likes
-        context['liked'] = liked
-        return context
-
 
 class PostUpateView(LoginRequiredMixin, UpdateView):
     """ This class is used to update a post """
