@@ -31,8 +31,8 @@
 - [💻 Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
-  - [Install](#install)
-  - [Usage](#usage)
+  <!-- - [Install](#install)
+  - [Usage](#usage) -->
   - [Run tests](#run-tests)
   <!-- - [Deployment](#deployment) -->
 - [👥 Authors](#authors)
@@ -120,7 +120,7 @@ Atleast Python 3.6, Django 3.0.5, PostgreSQL 12.2
  sudo apt-get update && sudo apt-get install python3.6
 ```
 
-## Project Setup
+## Setup <a name="setup"></a>
 
 <details>
 <summary>
