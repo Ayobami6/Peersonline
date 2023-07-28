@@ -11,6 +11,7 @@ declare -A djangoCommands=(
     ["shell"]="python manage.py shell"
     ["dbshell"]="python manage.py dbshell"
     ["help"]="help"
+    ["clean"]="find . -type d -name '__pycache__' -exec rm -rf {} +"
 )
 
 if [ -z "$1" ]; then
