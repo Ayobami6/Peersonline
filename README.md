@@ -122,10 +122,8 @@ Atleast Python 3.6, Django 3.0.5, PostgreSQL 12.2
 
 ## Setup <a name="setup"></a>
 
-<details>
-<summary>
+
 Steps
-</summary>
 
 - Create a folder with name peers on your local machine
 
@@ -196,7 +194,6 @@ create an Issue [here](https://github.com/Ayobami6/Peersonline/issues)
 ![Login](static/assets/login.png)
 ![Home](static/assets/home.png)
 
-</details>
 
 ### Run tests
 
